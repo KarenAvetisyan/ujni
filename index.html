@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>Inertia Scroll with Overlay</title>
+<style>
+@font-face {
+    font-family: 'Trial';
+    src: url(fonts/TRIALFactorA-Regular65-BF6476bc2fb3a4f.otf) format('opentype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Trial';
+    src: url(fonts/TRIALFactorA-Medium-BF6476bc306ea08.otf) format('opentype');
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Trial';
+    src: url(fonts/TRIALFactorA-Bold-BF6476bc2fe0b09.otf) format('opentype');
+    font-weight: 700;
+    font-style: normal;
+}
+  html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Trial', sans-serif;
+  }
+  
+  #_ujni_banners{
+    overflow: hidden;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    will-change: transform;
+  }
+
+   ._ujni-banner{
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  #_ujni_hero {
+    z-index: 2;
+    background-position: 50% 100%;
+    will-change: transform;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding-top: 90px;
+    padding-bottom: 50px;
+  }
+
+  ._ujni-hero__bg {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 100%;
+    transform: scale(1.1); 
+    transition: 0.5s ease;
+    animation: heroScale 1s ease-in-out forwards; 
+    will-change: transform;
+  }
+
+  @keyframes heroScale {
+    0% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  #_ujni_second {
+    z-index: 1;
+    min-height: 100vh;
+    min-height: 100dvh;
+    will-change: transform;
+  }
+
+  ._ujni-bg{
+    position: absolute;
+    width: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.1);
+  }
+
+  ._ujni-overlay{
+    position: absolute;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000000;
+    transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  
+  ._ujni-banner.in-viewport ._ujni-overlay{
+    opacity: 0;
+  }
+
+  ._ujni-banner .wrapper{
+      height: 100%;
+      display: flex;
+      align-items: center;
+  }
+
+  ._ujni-hero__content{
+    color: #fff;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  ._ujni-hero__subtitle{
+    font-size: clamp( 51px, 5vw, 70px);
+    line-height: 51px;
+    font-weight: 700;
+  }
+
+  ._content-bottom{
+    margin-top: auto;
+  }
+
+  ._ujni-banner_btn{
+    float: none!important;
+    text-align: center;
+    display: inline-block!important;
+    width: 100%;
+    z-index: 1;
+    position: relative;
+  }
+
+  @media (min-width: 500px) {
+    ._ujni-banner_btn{
+      display: none!important;
+    }
+    ._ujni-hero__content{
+      height: 80%;
+    }
+  }
+
+  ._ujni-banner.pre-active ._ujni-hero__bg,
+  ._ujni-banner.active ._ujni-hero__bg{
+    bottom: -70%;
+    height: 170%;
+  }
+
+  ._content-hidden__wrap{
+    transform: translateY(30%);
+    opacity: 0;
+    transition: 0.5s ease;
+    display: flex;
+  }
+
+  ._ujni-banner.pre-active ._content-hidden__wrap,
+  ._ujni-banner.active ._content-hidden__wrap{
+    transform: translateY(0);
+    margin-bottom: 0;
+    opacity: 1;
+  }  
+
+  ._content-hidden__stats{
+    display: flex;
+    gap: 30px;
+  }
+
+  /* delete  */
+  .extra{
+    height: 100vh;
+    width: 100%;
+    background-color: blue;
+    border-top: solid 1px red;
+    border-bottom: solid 1px red;
+    color: #fff;
+    font-size: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+
+    
+
+  
+</style>
+<link href="https://dev2.zastroyspb.ru/catalog/view/theme/default/stylesheet/stylesheet.css?20022026" rel="stylesheet">
+</head>
+<body>
+
+  <div id="_ujni_banners">
+      <section class="_ujni-banner" id="_ujni_hero" style="background-image:url('')">
+        <img class="_ujni-hero__bg" fetchpriority="high" src="https://dev2.zastroyspb.ru/image/main.jpg" alt="bg">  
+        <div class="wrapper">
+              <div class="_ujni-hero__content">
+
+                  <div class="_ujni-hero__content-top">
+                    <img fetchpriority="high" src="https://dev2.zastroyspb.ru/image/logo3.svg" alt="bg">
+                    <p class="_ujni-hero__subtitle">Место, в котором<br> хочется жить</p>
+                  </div>
+
+                  <div class="_content-bottom">
+
+                    <div class="_content-hidden__wrap">
+
+                        <div class="_col-left">
+                            <p class="_content-hidden__title">Город-спутник комфорт класса</p>
+                            <div class="_content-hidden__stats">
+                              <p>
+                                  2000
+                                  <span>гектар площади</span>
+                              </p>
+                              <p>
+                                  135
+                                  <span>тысяч жителей</span>
+                              </p>
+                              <p>
+                                  35
+                                  <span>минут до центра</span>
+                              </p>
+                            </div>
+                            <p class="_content-hidden__txt">Современный город-спутник Южный сочетает инновационную экосистему ИТМО Хайпарка с уютной средой для жизни. Просторные кварталы, зеленые бульвары и передовая инфраструктура создают идеальное место для работы и отдыха</p>
+                        </div>
+
+                        <div class="_col-right">
+                          <div class="_content-hidden__video">
+                              <a href="#" class="video" onclick="togglepopup('video',true);return false;"></a>
+                              <a class="video_l" href="#" onclick="togglepopup('video',true);return false;">Репортаж о городе</a>
+                          </div>
+                        </div>
+
+                    </div>
+
+                    <a class="btn _ujni-banner_btn" href="/apartments">ВЫБРАТЬ КВАРТИРУ</a>
+
+                  </div>
+
+              </div>
+          </div>
+      </section>
+
+      <section data-inviewport class="_ujni-banner" id="_ujni_second">
+        <img src="https://dev2.zastroyspb.ru/image/14.jpg?2" class="_ujni-bg">
+        <div class="_ujni-overlay"></div>
+      </section>
+  </div>
+
+ <section class="extra"><h5>1</h5></section>
+ <section class="extra"><h5>2</h5></section>
+ <section class="extra"><h5>3</h5></section>
+ <section class="extra"><h5>4</h5></section>
+ <section class="extra"><h5>5</h5></section>
+
+
+
+
+<script>
+const banner = document.getElementById('_ujni_hero');
+let bannerHeight = banner.offsetHeight;
+let bannerScroll = 0;
+let bannerActive = false;
+
+// Scroll threshold to activate banner
+const SCROLL_THRESHOLD = bannerHeight / 2;
+
+// Check if we are at the top
+function isAtTop() {
+  return window.scrollY <= 0;
+}
+
+// Update banner classes based on current scroll
+function updateBannerClasses() {
+  if (bannerScroll >= SCROLL_THRESHOLD) {
+    banner.classList.add('active');
+    banner.classList.remove('pre-active');
+    bannerActive = true;
+  } else if (bannerScroll > 0) {
+    banner.classList.add('pre-active');
+    banner.classList.remove('active');
+    bannerActive = false;
+  } else {
+    banner.classList.remove('active', 'pre-active');
+    bannerActive = false;
+  }
+}
+
+// Wheel scroll
+window.addEventListener('wheel', (e) => {
+  if (!bannerActive && isAtTop()) {
+    e.preventDefault(); // lock scroll at top
+    bannerScroll += e.deltaY;
+    if (bannerScroll < 0) bannerScroll = 0;
+    updateBannerClasses();
+  }
+}, { passive: false });
+
+// Touch scroll
+let touchStartY = 0;
+window.addEventListener('touchstart', (e) => {
+  if (!bannerActive && isAtTop()) touchStartY = e.touches[0].clientY;
+}, { passive: false });
+
+window.addEventListener('touchmove', (e) => {
+  if (!bannerActive && isAtTop()) {
+    e.preventDefault();
+    const touchY = e.touches[0].clientY;
+    let delta = touchStartY - touchY;
+    bannerScroll += delta;
+    if (bannerScroll < 0) bannerScroll = 0;
+    touchStartY = touchY;
+    updateBannerClasses();
+  }
+}, { passive: false });
+
+// Scroll listener: unlock banner when scrolling back up
+window.addEventListener('scroll', () => {
+  // If user scrolls back near top, reset banner
+  if (window.scrollY < 1) {
+    banner.classList.remove('active', 'pre-active');
+    bannerActive = false;
+    bannerScroll = 0;
+  }
+});
+</script>
+
+
+<!-- <script>
+const banner = document.getElementById('_ujni_hero');
+let bannerHeight = banner.offsetHeight;
+let bannerScroll = 0;
+let bannerActive = false;
+
+// How much scroll is needed to activate banner
+const SCROLL_THRESHOLD = bannerHeight / 2.1;
+
+// Helper: are we at the top of the page?
+function isAtTop() {
+  return window.scrollY <= 0;
+}
+
+// Wheel scroll
+window.addEventListener('wheel', (e) => {
+  if (!bannerActive && isAtTop()) {
+    e.preventDefault(); // lock scroll at top only
+    bannerScroll += e.deltaY;
+
+    if (bannerScroll >= SCROLL_THRESHOLD) {
+      banner.classList.add('active');
+      banner.classList.remove('pre-active');
+      bannerActive = true;
+    } else if (bannerScroll > 0) {
+      banner.classList.add('pre-active');
+    } else {
+      bannerScroll = 0;
+      banner.classList.remove('pre-active');
+    }
+  }
+}, { passive: false });
+
+// Touch scroll (mobile)
+let touchStartY = 0;
+window.addEventListener('touchstart', (e) => {
+  if (!bannerActive && isAtTop()) touchStartY = e.touches[0].clientY;
+}, { passive: false });
+
+window.addEventListener('touchmove', (e) => {
+  if (!bannerActive && isAtTop()) {
+    e.preventDefault();
+    const touchY = e.touches[0].clientY;
+    const delta = touchStartY - touchY;
+    bannerScroll += delta;
+    touchStartY = touchY;
+
+    if (bannerScroll >= SCROLL_THRESHOLD) {
+      banner.classList.add('active');
+      banner.classList.remove('pre-active');
+      bannerActive = true;
+    } else if (bannerScroll > 0) {
+      banner.classList.add('pre-active');
+    } else {
+      bannerScroll = 0;
+      banner.classList.remove('pre-active');
+    }
+  }
+}, { passive: false });
+
+// Optional: scroll back up to deactivate
+window.addEventListener('scroll', () => {
+  if (bannerActive && window.scrollY < 1) {
+    banner.classList.remove('active');
+    bannerActive = false;
+    bannerScroll = 0;
+    banner.classList.remove('pre-active');
+    window.scrollTo(0, 0);
+  }
+});
+</script> -->
+
+ <script>
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // VARS 
+    const hero = document.getElementById('_ujni_hero');
+    const second = document.getElementById('_ujni_second');
+    const overlay = second.querySelector('._ujni-overlay');
+    const bg = second.querySelector('._ujni-bg');
+
+    // FULL HEIGHT BANNER VIA JS 
+    function setHeroHeight() {
+      const height = window.visualViewport
+        ? window.visualViewport.height
+        : window.innerHeight;
+
+      hero.style.height = height + 'px';
+      second.style.height = height + 'px';
+    }
+
+    setHeroHeight();
+
+    // PARALLAX ON SCROLL 
+    class InertiaScroll {
+      constructor() {
+        this.init();
+      }
+      init() {
+        requestAnimationFrame(() => this.animate());
+      }
+      animate() {
+        const scrollY = window.scrollY;
+        let progress = scrollY / window.innerHeight;
+        progress = Math.min(Math.max(progress, 0), 1);
+        // hero parallax
+        const maxOffset = window.innerHeight * 0.25;
+        const heroOffset = maxOffset * (1 - progress);
+        hero.style.transform = `translate3d(0, ${heroOffset}px, 0)`;
+        hero.style.marginTop = `${-heroOffset}px`;
+        // overlay fade
+        const fadeStart = 0.1;
+        const fadeProgress = Math.min(Math.max((progress - fadeStart) / (1 - fadeStart), 0), 1);
+        overlay.style.opacity = 0.9 * (1 - fadeProgress);
+        const scale = 1.1 - (0.1 * progress);
+        bg.style.transform = `scale(${scale})`;
+        requestAnimationFrame(() => this.animate());
+      }
+      }
+    new InertiaScroll();
+      
+    // OBSERVER 
+    const sections = document.querySelectorAll('[data-inviewport]');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-viewport');
+        } else {
+          entry.target.classList.remove('in-viewport');
+        }
+      });
+    }, {
+      root: null,        
+      rootMargin: '0px',
+      threshold: 0.5       
+    });
+    sections.forEach(section => observer.observe(section));
+    
+  });
+ </script>
+
+
+</body>
+</html>
+
+
