@@ -383,35 +383,28 @@ window.addEventListener('scroll', () => {
 
     // setHeroHeight();
     function setHeroHeight() {
-      const height = window.visualViewport
-        ? window.visualViewport.height
-        : window.innerHeight;
+    const height = window.visualViewport
+      ? window.visualViewport.height
+      : window.innerHeight;
 
-      hero.style.height = height + 'px';
-      second.style.height = height + 'px';
-    }
+    hero.style.height = height + 'px';
+    second.style.height = height + 'px';
+  }
 
-    // Run immediately
+  function initHeroHeight() {
     setHeroHeight();
 
-    // Run again after first paint (fixes iOS wrong initial value)
-    requestAnimationFrame(() => {
-      setHeroHeight();
-    });
+    requestAnimationFrame(setHeroHeight);
 
-    // Run again after slight delay (extra safety for iOS)
+    setTimeout(setHeroHeight, 150);
+    setTimeout(setHeroHeight, 400);
+  }
+  initHeroHeight();
+  window.addEventListener('orientationchange', () => {
     setTimeout(() => {
-      setHeroHeight();
+      initHeroHeight();
     }, 300);
-
-    // Also update when viewport actually changes
-    if (window.visualViewport) {
-      window.visualViewport.addEventListener('resize', setHeroHeight);
-    }
-
-    // Fallback
-    window.addEventListener('resize', setHeroHeight);
-    window.addEventListener('orientationchange', setHeroHeight);
+  });
 
     // PARALLAX ON SCROLL 
     class InertiaScroll {
