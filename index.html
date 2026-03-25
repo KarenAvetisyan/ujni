@@ -288,74 +288,6 @@
 
 
 
-<script>
-  const banner = document.getElementById('_ujni_hero');
-  let bannerHeight = banner.offsetHeight;
-  let bannerScroll = 0;
-  let bannerActive = false;
-
-  // Scroll threshold to activate banner
-  const SCROLL_THRESHOLD = bannerHeight / (window.innerWidth < 500 ? 2 : 3);
-
-  // Check if we are at the top
-  function isAtTop() {
-    return window.scrollY <= 0;
-  }
-
-  // Update banner classes based on current scroll
-  function updateBannerClasses() {
-    if (bannerScroll >= SCROLL_THRESHOLD) {
-      banner.classList.add('active');
-      banner.classList.remove('pre-active');
-      bannerActive = true;
-    } else if (bannerScroll > 0) {
-      banner.classList.add('pre-active');
-      banner.classList.remove('active');
-      bannerActive = false;
-    } else {
-      banner.classList.remove('active', 'pre-active');
-      bannerActive = false;
-    }
-  }
-
-  // Wheel scroll
-  window.addEventListener('wheel', (e) => {
-    if (!bannerActive && isAtTop()) {
-      e.preventDefault(); // lock scroll at top
-      bannerScroll += e.deltaY;
-      if (bannerScroll < 0) bannerScroll = 0;
-      updateBannerClasses();
-    }
-  }, { passive: false });
-
-  // Touch scroll
-  let touchStartY = 0;
-  window.addEventListener('touchstart', (e) => {
-    if (!bannerActive && isAtTop()) touchStartY = e.touches[0].clientY;
-  }, { passive: false });
-
-  window.addEventListener('touchmove', (e) => {
-    if (!bannerActive && isAtTop()) {
-      e.preventDefault();
-      const touchY = e.touches[0].clientY;
-      let delta = touchStartY - touchY;
-      bannerScroll += delta;
-      if (bannerScroll < 0) bannerScroll = 0;
-      touchStartY = touchY;
-      updateBannerClasses();
-    }
-  }, { passive: false });
-
-  // Scroll listener: unlock banner when scrolling back up
-  window.addEventListener('scroll', () => {
-    // If user scrolls back near top, reset banner
-    if (window.scrollY < 1) {
-      banner.classList.remove('active', 'pre-active');
-      bannerActive = false;
-      bannerScroll = 0;
-    }
-  });
-</script>
 
 
 <!-- <script>
@@ -499,6 +431,74 @@ window.addEventListener('scroll', () => {
   });
  </script>
 
+<script>
+  const banner = document.getElementById('_ujni_hero');
+  let bannerHeight = banner.offsetHeight;
+  let bannerScroll = 0;
+  let bannerActive = false;
+
+  // Scroll threshold to activate banner
+  const SCROLL_THRESHOLD = bannerHeight / (window.innerWidth < 500 ? 2 : 3);
+
+  // Check if we are at the top
+  function isAtTop() {
+    return window.scrollY <= 0;
+  }
+
+  // Update banner classes based on current scroll
+  function updateBannerClasses() {
+    if (bannerScroll >= SCROLL_THRESHOLD) {
+      banner.classList.add('active');
+      banner.classList.remove('pre-active');
+      bannerActive = true;
+    } else if (bannerScroll > 0) {
+      banner.classList.add('pre-active');
+      banner.classList.remove('active');
+      bannerActive = false;
+    } else {
+      banner.classList.remove('active', 'pre-active');
+      bannerActive = false;
+    }
+  }
+
+  // Wheel scroll
+  window.addEventListener('wheel', (e) => {
+    if (!bannerActive && isAtTop()) {
+      e.preventDefault(); // lock scroll at top
+      bannerScroll += e.deltaY;
+      if (bannerScroll < 0) bannerScroll = 0;
+      updateBannerClasses();
+    }
+  }, { passive: false });
+
+  // Touch scroll
+  let touchStartY = 0;
+  window.addEventListener('touchstart', (e) => {
+    if (!bannerActive && isAtTop()) touchStartY = e.touches[0].clientY;
+  }, { passive: false });
+
+  window.addEventListener('touchmove', (e) => {
+    if (!bannerActive && isAtTop()) {
+      e.preventDefault();
+      const touchY = e.touches[0].clientY;
+      let delta = touchStartY - touchY;
+      bannerScroll += delta;
+      if (bannerScroll < 0) bannerScroll = 0;
+      touchStartY = touchY;
+      updateBannerClasses();
+    }
+  }, { passive: false });
+
+  // Scroll listener: unlock banner when scrolling back up
+  window.addEventListener('scroll', () => {
+    // If user scrolls back near top, reset banner
+    if (window.scrollY < 1) {
+      banner.classList.remove('active', 'pre-active');
+      bannerActive = false;
+      bannerScroll = 0;
+    }
+  });
+</script>
 
 </body>
 </html>
