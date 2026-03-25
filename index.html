@@ -372,6 +372,16 @@ window.addEventListener('scroll', () => {
     const bg = second.querySelector('._ujni-bg');
 
     // FULL HEIGHT BANNER VIA JS 
+    // function setHeroHeight() {
+    //   const height = window.visualViewport
+    //     ? window.visualViewport.height
+    //     : window.innerHeight;
+
+    //   hero.style.height = height + 'px';
+    //   second.style.height = height + 'px';
+    // }
+
+    // setHeroHeight();
     function setHeroHeight() {
       const height = window.visualViewport
         ? window.visualViewport.height
@@ -381,7 +391,27 @@ window.addEventListener('scroll', () => {
       second.style.height = height + 'px';
     }
 
+    // Run immediately
     setHeroHeight();
+
+    // Run again after first paint (fixes iOS wrong initial value)
+    requestAnimationFrame(() => {
+      setHeroHeight();
+    });
+
+    // Run again after slight delay (extra safety for iOS)
+    setTimeout(() => {
+      setHeroHeight();
+    }, 300);
+
+    // Also update when viewport actually changes
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener('resize', setHeroHeight);
+    }
+
+    // Fallback
+    window.addEventListener('resize', setHeroHeight);
+    window.addEventListener('orientationchange', setHeroHeight);
 
     // PARALLAX ON SCROLL 
     class InertiaScroll {
