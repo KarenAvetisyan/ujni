@@ -295,7 +295,7 @@
   let bannerActive = false;
 
   // Scroll threshold to activate banner
-  const SCROLL_THRESHOLD = bannerHeight / 2;
+  const SCROLL_THRESHOLD = bannerHeight / (window.innerWidth < 500 ? 3 : 2);
 
   // Check if we are at the top
   function isAtTop() {
