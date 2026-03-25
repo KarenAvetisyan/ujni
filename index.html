@@ -54,7 +54,7 @@
     background-size: cover;
     background-repeat: no-repeat;
     padding-top: 90px;
-    padding-bottom: 50px;
+    padding-bottom: 90px;
   }
 
   ._ujni-hero__bg {
@@ -103,8 +103,8 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    background-color: #000000;
+    height: 50%;
+    background: linear-gradient(to bottom, #000000, #000000, transparent);
     transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
   }
   
@@ -131,32 +131,46 @@
     font-weight: 700;
   }
 
-  ._content-bottom{
-    margin-top: auto;
-  }
+
 
   ._ujni-banner_btn{
     float: none!important;
     text-align: center;
     display: inline-block!important;
-    width: 100%;
+    width: calc(100% - 38px);
     z-index: 1;
-    position: relative;
+    max-height: 62px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    bottom: 20px;
+
   }
 
-  @media (min-width: 500px) {
+  @media (min-width: 501px) {
     ._ujni-banner_btn{
       display: none!important;
     }
     ._ujni-hero__content{
-      height: 80%;
+      height: 85%;
     }
+  }
+
+  @media (max-width: 500px) {
+    #_ujni_hero {
+      padding-bottom: 20px;
+    } 
   }
 
   ._ujni-banner.pre-active ._ujni-hero__bg,
   ._ujni-banner.active ._ujni-hero__bg{
     bottom: -70%;
     height: 170%;
+  }
+
+  ._content-bottom{
+    margin-top: auto;
   }
 
   ._content-hidden__wrap{
@@ -177,6 +191,13 @@
     display: flex;
     gap: 30px;
   }
+
+  @media (max-width: 500px) {
+     ._content-bottom{
+      padding-bottom: 100px;
+     }
+  }
+
 
   /* delete  */
   .extra{
@@ -232,7 +253,7 @@
                                   <span>минут до центра</span>
                               </p>
                             </div>
-                            <!-- <p class="_content-hidden__txt">Современный город-спутник Южный сочетает инновационную экосистему ИТМО Хайпарка с уютной средой для жизни. Просторные кварталы, зеленые бульвары и передовая инфраструктура создают идеальное место для работы и отдыха</p> -->
+                            <p class="_content-hidden__txt">Современный город-спутник Южный сочетает инновационную экосистему ИТМО Хайпарка с уютной средой для жизни. Просторные кварталы, зеленые бульвары и передовая инфраструктура создают идеальное место для работы и отдыха</p>
                         </div>
 
                         <div class="_col-right">
@@ -268,72 +289,72 @@
 
 
 <script>
-const banner = document.getElementById('_ujni_hero');
-let bannerHeight = banner.offsetHeight;
-let bannerScroll = 0;
-let bannerActive = false;
+  const banner = document.getElementById('_ujni_hero');
+  let bannerHeight = banner.offsetHeight;
+  let bannerScroll = 0;
+  let bannerActive = false;
 
-// Scroll threshold to activate banner
-const SCROLL_THRESHOLD = bannerHeight / 2;
+  // Scroll threshold to activate banner
+  const SCROLL_THRESHOLD = bannerHeight / 2;
 
-// Check if we are at the top
-function isAtTop() {
-  return window.scrollY <= 0;
-}
-
-// Update banner classes based on current scroll
-function updateBannerClasses() {
-  if (bannerScroll >= SCROLL_THRESHOLD) {
-    banner.classList.add('active');
-    banner.classList.remove('pre-active');
-    bannerActive = true;
-  } else if (bannerScroll > 0) {
-    banner.classList.add('pre-active');
-    banner.classList.remove('active');
-    bannerActive = false;
-  } else {
-    banner.classList.remove('active', 'pre-active');
-    bannerActive = false;
+  // Check if we are at the top
+  function isAtTop() {
+    return window.scrollY <= 0;
   }
-}
 
-// Wheel scroll
-window.addEventListener('wheel', (e) => {
-  if (!bannerActive && isAtTop()) {
-    e.preventDefault(); // lock scroll at top
-    bannerScroll += e.deltaY;
-    if (bannerScroll < 0) bannerScroll = 0;
-    updateBannerClasses();
+  // Update banner classes based on current scroll
+  function updateBannerClasses() {
+    if (bannerScroll >= SCROLL_THRESHOLD) {
+      banner.classList.add('active');
+      banner.classList.remove('pre-active');
+      bannerActive = true;
+    } else if (bannerScroll > 0) {
+      banner.classList.add('pre-active');
+      banner.classList.remove('active');
+      bannerActive = false;
+    } else {
+      banner.classList.remove('active', 'pre-active');
+      bannerActive = false;
+    }
   }
-}, { passive: false });
 
-// Touch scroll
-let touchStartY = 0;
-window.addEventListener('touchstart', (e) => {
-  if (!bannerActive && isAtTop()) touchStartY = e.touches[0].clientY;
-}, { passive: false });
+  // Wheel scroll
+  window.addEventListener('wheel', (e) => {
+    if (!bannerActive && isAtTop()) {
+      e.preventDefault(); // lock scroll at top
+      bannerScroll += e.deltaY;
+      if (bannerScroll < 0) bannerScroll = 0;
+      updateBannerClasses();
+    }
+  }, { passive: false });
 
-window.addEventListener('touchmove', (e) => {
-  if (!bannerActive && isAtTop()) {
-    e.preventDefault();
-    const touchY = e.touches[0].clientY;
-    let delta = touchStartY - touchY;
-    bannerScroll += delta;
-    if (bannerScroll < 0) bannerScroll = 0;
-    touchStartY = touchY;
-    updateBannerClasses();
-  }
-}, { passive: false });
+  // Touch scroll
+  let touchStartY = 0;
+  window.addEventListener('touchstart', (e) => {
+    if (!bannerActive && isAtTop()) touchStartY = e.touches[0].clientY;
+  }, { passive: false });
 
-// Scroll listener: unlock banner when scrolling back up
-window.addEventListener('scroll', () => {
-  // If user scrolls back near top, reset banner
-  if (window.scrollY < 1) {
-    banner.classList.remove('active', 'pre-active');
-    bannerActive = false;
-    bannerScroll = 0;
-  }
-});
+  window.addEventListener('touchmove', (e) => {
+    if (!bannerActive && isAtTop()) {
+      e.preventDefault();
+      const touchY = e.touches[0].clientY;
+      let delta = touchStartY - touchY;
+      bannerScroll += delta;
+      if (bannerScroll < 0) bannerScroll = 0;
+      touchStartY = touchY;
+      updateBannerClasses();
+    }
+  }, { passive: false });
+
+  // Scroll listener: unlock banner when scrolling back up
+  window.addEventListener('scroll', () => {
+    // If user scrolls back near top, reset banner
+    if (window.scrollY < 1) {
+      banner.classList.remove('active', 'pre-active');
+      bannerActive = false;
+      bannerScroll = 0;
+    }
+  });
 </script>
 
 
