@@ -79,19 +79,7 @@
 
   #_ujni_second {
     z-index: 1;
-    min-height: 100vh;
-    min-height: 100dvh;
     will-change: transform;
-  }
-
-  ._ujni-bg{
-    position: absolute;
-    width: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transform: scale(1.1);
   }
 
   ._ujni-overlay{
@@ -168,16 +156,19 @@
   }  
 
   ._content-hidden__wrap{
-    transform: translateY(30%);
+    transform: translateY(50px);
     justify-content: space-between;
     width: 100%;
     opacity: 0;
     transition: 0.5s ease;
     display: flex;
     gap: 30px;
+    position: relative;
+    z-index: 1;
   }
   ._content-hidden__wrap ._col-left{
     max-width: 780px;
+    width: 100%;
   }
   ._content-hidden__wrap ._col-right{
     max-width: 400px;
@@ -201,6 +192,9 @@
     font-size: 22px;
     display: block;
     font-weight: 400;
+  }
+  ._content-hidden__txt-wrap{
+    overflow: hidden;
   }
   ._content-hidden__txt{
     font-size: 20px;
@@ -244,20 +238,40 @@
     padding-top: 50%;
     display: inline-block;
   }
-  
+  ._ujni-arrow {
+      width: 58px;
+      z-index: 1000;
+      height: 58px;
+      position: absolute;
+      bottom: 0;
+      left: 19px;
+      z-index: 1;
+      background: url(https://dev2.zastroyspb.ru/image/main_arrow.svg) center;
+      display: none;
+      transition: 0.5s ease;
+  }
+  ._ujni-banner.pre-active ._ujni-arrow,
+  ._ujni-banner.active ._ujni-arrow{
+    transform: translateY(-50px) scale(0);
+    opacity: 0;
+    pointer-events: none;
+  }
   @media (min-width: 501px) {
-      ._ujni-hero__content-top img {
-          width: 600px;
-      }
-      ._ujni-banner_btn{
-        display: none!important;
-      }
-      ._ujni-hero__content{
-        height: 85%;
-      }
-      ._ujni-hero__subtitle {
-          font-size: 50px;
-      }
+    ._ujni-arrow{
+      display: inline-block;
+    }
+    ._ujni-hero__content-top img {
+        width: 600px;
+    }
+    ._ujni-banner_btn{
+      display: none!important;
+    }
+    ._ujni-hero__content{
+      height: 85%;
+    }
+    ._ujni-hero__subtitle {
+        font-size: 50px;
+    }
   }
   @media (min-width: 1401px) {
       ._ujni-hero__content-top img {
@@ -270,7 +284,6 @@
           font-size: 40px;
       }
   }
-
   @media (max-width: 1400px) {
     ._content-hidden__wrap ._col-right{
       max-width: 300px;
@@ -336,6 +349,82 @@
   }
 
 
+  ._ujni-addresses__bg{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 500px;
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    transform: translate3d(-50%, 0, 0) scale(1.1);
+  }
+  ._ujni-addresses{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  ._ujni-address{
+    white-space: nowrap;
+    font-weight: 500;
+    border-radius: 16px;
+    background-color: #fff;
+    position: absolute;
+    width: fit-content;
+    top: 50%;
+    left: 50%;
+    padding: 14px 25px;
+    filter: blur(20px);
+    transition: 1s ease;
+    transform: scale(0);
+    transform-origin: bottom right;
+  }
+  .in-viewport ._ujni-address,
+  .in-viewport ._ujni-address:before{
+    filter: blur(0);
+    transform: scale(1);
+  }
+  ._ujni-address:before{
+    content: "";
+    width: 16px;
+    height: 16px;
+    border-radius: 100%;
+    background-color: #fff;
+    position: absolute;
+    bottom: -16px;
+    right: -16px;
+    transition: 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition-delay: 1s;
+    transform: scale(0);
+  }
+  ._ujni-address._address-1{
+    margin-top: -217px;
+    margin-left: -50px;
+  }
+  ._ujni-address._address-2{
+    margin-top: -105px;
+    margin-left: -470px;
+    transition-delay: 0.2s;
+    transform-origin: bottom left;
+
+  }
+  ._ujni-address._address-2:before{
+    right: auto;
+    left: -16px;
+  }
+  ._ujni-address._address-3{
+    margin-top: -46px;
+    margin-left: 337px;
+    transition-delay: 0.3s;
+  }
+  ._ujni-address._address-4{
+    margin-top: 326px;
+    margin-left: -200px;
+    transition-delay: 0.4s;
+  }
 
   /* delete  */
   .extra{
@@ -351,6 +440,60 @@
     justify-content: center;
   }
 
+  @media (min-width: 501px) {
+    ._ujni-addresses__bg{
+      width: 1920px;
+    }
+  }
+
+  @media (max-width: 1200px) {
+    ._ujni-address._address-3 {
+        margin-top: 0px;
+        margin-left: 261px;
+    }
+  }
+  @media (max-width: 500px) {
+    ._ujni-address{
+      font-size: 13px;
+      padding: 8px 20px;
+      border-radius: 12px;
+    }
+    ._ujni-address:before{
+        width: 10px;
+        height: 10px;
+        bottom: -9px;
+        right: -9px;
+    }
+    ._ujni-address._address-2:before {
+        right: auto;
+        left: -9px;
+    }
+    ._ujni-address._address-1{
+        margin-top:  0;
+        top: 32%;
+        margin-left: -12%;
+    }
+    ._ujni-address._address-2 {
+        margin-left: 0;
+        margin-top: 0;
+        top: 43%;
+        left: 15%;
+    }
+     ._ujni-address._address-3 {
+       top: auto;
+       bottom: 19%;
+      margin-top: 0;
+      margin-left: 0;
+      right: 10%;
+      left: auto;
+    }
+    ._ujni-address._address-4 {
+       top: auto;
+       bottom: 15%;
+        margin-top: 0;
+        margin-left: -33%;
+    }
+  }
 
     
 
@@ -361,59 +504,67 @@
 <body>
 
   <div id="_ujni_banners">
-      <section class="_ujni-banner" id="_ujni_hero" style="background-image:url('')">
+      <section id="_ujni_hero" class="_ujni-banner" style="background-image:url('')">
         <img class="_ujni-hero__bg" fetchpriority="high" src="https://dev2.zastroyspb.ru/image/main.jpg" alt="bg">  
         <div class="wrapper">
-              <div class="_ujni-hero__content">
+            <div class="_ujni-hero__content">
 
-                  <div class="_ujni-hero__content-top">
-                    <img fetchpriority="high" src="https://dev2.zastroyspb.ru/image/logo3.svg" alt="bg">
-                    <p class="_ujni-hero__subtitle">Место, в котором<br> хочется жить</p>
-                  </div>
+                <div class="_ujni-hero__content-top">
+                  <img fetchpriority="high" src="https://dev2.zastroyspb.ru/image/logo3.svg" alt="bg">
+                  <p class="_ujni-hero__subtitle">Место, в котором<br> хочется жить</p>
+                </div>
 
-                  <div class="_content-bottom">
+                <div class="_content-bottom">
 
-                    <div class="_content-hidden__wrap">
+                  <div class="_content-hidden__wrap">
 
-                        <div class="_col-left">
-                            <p class="_content-hidden__title">Город-спутник комфорт класса</p>
-                            <div class="_content-hidden__stats">
-                              <p>
-                                  2000
-                                  <span>гектар площади</span>
-                              </p>
-                              <p>
-                                  135
-                                  <span>тысяч жителей</span>
-                              </p>
-                              <p>
-                                  35
-                                  <span>минут до центра</span>
-                              </p>
-                            </div>
-                            <p class="_content-hidden__txt">Современный город-спутник Южный сочетает инновационную экосистему ИТМО Хайпарка с уютной средой для жизни. Просторные кварталы, зеленые бульвары и передовая инфраструктура создают идеальное место для работы и отдыха</p>
-                        </div>
-
-                        <div class="_col-right">
-                          <div class="_content-hidden__video">
-                              <a href="#" class="video" onclick="togglepopup('video',true);return false;"></a>
-                              <a class="video-play" href="#" onclick="togglepopup('video',true);return false;">Репортаж о городе</a>
+                      <div class="_col-left">
+                          <p class="_content-hidden__title">Город-спутник комфорт класса</p>
+                          <div class="_content-hidden__stats">
+                            <p>
+                                2000
+                                <span>гектар площади</span>
+                            </p>
+                            <p>
+                                135
+                                <span>тысяч жителей</span>
+                            </p>
+                            <p>
+                                35
+                                <span>минут до центра</span>
+                            </p>
                           </div>
+                          <p class="_content-hidden__txt">Современный город-спутник Южный сочетает инновационную экосистему ИТМО Хайпарка с уютной средой для жизни. Просторные кварталы, зеленые бульвары и передовая инфраструктура создают идеальное место для работы и отдыха</p>
+                      </div>
+
+                      <div class="_col-right">
+                        <div class="_content-hidden__video">
+                            <a href="#" class="video" onclick="togglepopup('video',true);return false;"></a>
+                            <a class="video-play" href="#" onclick="togglepopup('video',true);return false;">Репортаж о городе</a>
                         </div>
-
-                    </div>
-
-                    <a class="btn _ujni-banner_btn" href="/apartments">ВЫБРАТЬ КВАРТИРУ</a>
+                      </div>
 
                   </div>
 
-              </div>
-          </div>
+                  <a class="btn _ujni-banner_btn" href="/apartments">ВЫБРАТЬ КВАРТИРУ</a>
+
+                </div>
+
+            </div>
+            <a href="#" class="_ujni-arrow"></a>
+        </div>
       </section>
 
-      <section data-inviewport class="_ujni-banner" id="_ujni_second">
-        <img src="https://dev2.zastroyspb.ru/image/14.jpg?2" class="_ujni-bg">
+      <section id="_ujni_second" class="_ujni-banner" data-inviewport>
+        <!-- <img src="https://dev2.zastroyspb.ru/image/14.jpg?2" class="_ujni-addresses__bg"> -->
+        <div class="_ujni-addresses__bg" style="background-image: url(https://dev2.zastroyspb.ru/image/14.jpg?2);"></div>
         <div class="_ujni-overlay"></div>
+        <div class="_ujni-addresses">
+            <span class="_ujni-address _address-1">41 110 м² жилья</span>
+            <span class="_ujni-address _address-2">Детский сад на 160 мест</span>
+            <span class="_ujni-address _address-3">Парковочные зоны</span>
+            <span class="_ujni-address _address-4">Торговая аллея</span>
+        </div>
       </section>
   </div>
 
@@ -507,7 +658,7 @@ window.addEventListener('scroll', () => {
     const hero = document.getElementById('_ujni_hero');
     const second = document.getElementById('_ujni_second');
     const overlay = second.querySelector('._ujni-overlay');
-    const bg = second.querySelector('._ujni-bg');
+    const ujni_bg = second.querySelector('._ujni-addresses__bg');
 
     // FULL HEIGHT BANNER VIA JS 
     function setHeroHeight() {
@@ -557,7 +708,8 @@ window.addEventListener('scroll', () => {
         const fadeProgress = Math.min(Math.max((progress - fadeStart) / (1 - fadeStart), 0), 1);
         overlay.style.opacity = 0.9 * (1 - fadeProgress);
         const scale = 1.1 - (0.1 * progress);
-        bg.style.transform = `scale(${scale})`;
+        // ujni_bg.style.transform = `scale(${scale})`;
+        ujni_bg.style.transform = `translate3d(-50%, 0, 0) scale(${scale})`;
         requestAnimationFrame(() => this.animate());
       }
       }
