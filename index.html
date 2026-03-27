@@ -591,21 +591,33 @@
       second.style.height = height + 'px';
     }
 
-    function initHeroHeight() {
-      setHeroHeight();
-
+    window.addEventListener('load', () => {
       requestAnimationFrame(setHeroHeight);
+    });
+    //function setHeroHeight() {
+    //   const height = window.visualViewport
+    //     ? window.visualViewport.height
+    //     : window.innerHeight;
 
-      setTimeout(setHeroHeight, 150);
-      setTimeout(setHeroHeight, 400);
-    }
-    initHeroHeight();
+    //   hero.style.height = height + 'px';
+    //   second.style.height = height + 'px';
+    // }
+
+    // function initHeroHeight() {
+    //   setHeroHeight();
+
+    //   requestAnimationFrame(setHeroHeight);
+
+    //   setTimeout(setHeroHeight, 150);
+    //   setTimeout(setHeroHeight, 400);
+    // }
+    // initHeroHeight();
     
-    window.addEventListener('orientationchange', () => {
-      setTimeout(() => {
-        initHeroHeight();
-      }, 300);
-    }); 
+    // window.addEventListener('orientationchange', () => {
+    //   setTimeout(() => {
+    //     initHeroHeight();
+    //   }, 300);
+    // }); 
 
     // PARALLAX ON SCROLL 
     class InertiaScroll {
