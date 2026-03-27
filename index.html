@@ -551,7 +551,7 @@
                   <a class="btn _ujni-banner_btn" href="/apartments">ВЫБРАТЬ КВАРТИРУ</a>
                 </div>
             </div>
-            <a href="#" class="_ujni-arrow"></a>
+            <a href="#" class="js-scroll-banner _ujni-arrow"></a>
         </div>
       </section>
 
@@ -575,7 +575,6 @@
 
 
  <script>
-
   document.addEventListener('DOMContentLoaded', () => {
     // VARS 
     const hero = document.getElementById('_ujni_hero');
@@ -715,7 +714,7 @@
   window.addEventListener('touchstart', (e) => {
     if (!bannerActive && isAtTop()) touchStartY = e.touches[0].clientY;
   }, { passive: false });
-
+  
   window.addEventListener('touchmove', (e) => {
     if (!bannerActive && isAtTop()) {
       e.preventDefault();
@@ -737,6 +736,28 @@
       bannerScroll = 0;
     }
   });
+
+  const scrollBtn = document.querySelector('.js-scroll-banner');
+
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+
+      // If already active — do nothing
+      if (bannerActive) return;
+
+      // Simulate initial scroll
+      bannerScroll = SCROLL_THRESHOLD / 2;
+
+      // Apply pre-active state
+      banner.classList.add('pre-active');
+      banner.classList.remove('active');
+      bannerActive = false;
+      
+    });
+  }
+
+  
 </script>
 
 </body>
