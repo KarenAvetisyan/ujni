@@ -515,16 +515,12 @@
         <img class="_ujni-hero__bg" fetchpriority="high" src="https://dev2.zastroyspb.ru/image/main.jpg" alt="bg">  
         <div class="wrapper">
             <div class="_ujni-hero__content">
-
                 <div class="_ujni-hero__content-top">
                   <img fetchpriority="high" src="https://dev2.zastroyspb.ru/image/logo3.svg" alt="bg">
                   <p class="_ujni-hero__subtitle">Место, в котором<br> хочется жить</p>
                 </div>
-
                 <div class="_content-bottom">
-
                   <div class="_content-hidden__wrap">
-
                       <div class="_col-left">
                           <p class="_content-hidden__title">Город-спутник комфорт класса</p>
                           <div class="_content-hidden__stats">
@@ -543,27 +539,21 @@
                           </div>
                           <p class="_content-hidden__txt">Современный город-спутник Южный сочетает инновационную экосистему ИТМО Хайпарка с уютной средой для жизни. Просторные кварталы, зеленые бульвары и передовая инфраструктура создают идеальное место для работы и отдыха</p>
                       </div>
-
                       <div class="_col-right">
                         <div class="_content-hidden__video">
                             <a href="#" class="video" onclick="togglepopup('video',true);return false;"></a>
                             <a class="video-play" href="#" onclick="togglepopup('video',true);return false;">Репортаж о городе</a>
                         </div>
                       </div>
-
                   </div>
-
                   <a class="btn _ujni-banner_btn" href="/apartments">ВЫБРАТЬ КВАРТИРУ</a>
-
                 </div>
-
             </div>
             <a href="#" class="_ujni-arrow"></a>
         </div>
       </section>
 
       <div id="_ujni_second" class="_ujni-banner" data-inviewport>
-        <!-- <img src="https://dev2.zastroyspb.ru/image/14.jpg?2" class="_ujni-addresses__bg"> -->
         <div class="_ujni-addresses__bg" style="background-image: url(https://dev2.zastroyspb.ru/image/14.jpg?2);"></div>
         <div class="_ujni-overlay"></div>
         <div class="_ujni-addresses">
@@ -581,82 +571,6 @@
  <section class="extra"><h5>4</h5></section>
  <section class="extra"><h5>5</h5></section>
 
-
-
-
-
-
-<!-- <script>
-const banner = document.getElementById('_ujni_hero');
-let bannerHeight = banner.offsetHeight;
-let bannerScroll = 0;
-let bannerActive = false;
-
-// How much scroll is needed to activate banner
-const SCROLL_THRESHOLD = bannerHeight / 2.1;
-
-// Helper: are we at the top of the page?
-function isAtTop() {
-  return window.scrollY <= 0;
-}
-
-// Wheel scroll
-window.addEventListener('wheel', (e) => {
-  if (!bannerActive && isAtTop()) {
-    e.preventDefault(); // lock scroll at top only
-    bannerScroll += e.deltaY;
-
-    if (bannerScroll >= SCROLL_THRESHOLD) {
-      banner.classList.add('active');
-      banner.classList.remove('pre-active');
-      bannerActive = true;
-    } else if (bannerScroll > 0) {
-      banner.classList.add('pre-active');
-    } else {
-      bannerScroll = 0;
-      banner.classList.remove('pre-active');
-    }
-  }
-}, { passive: false });
-
-// Touch scroll (mobile)
-let touchStartY = 0;
-window.addEventListener('touchstart', (e) => {
-  if (!bannerActive && isAtTop()) touchStartY = e.touches[0].clientY;
-}, { passive: false });
-
-window.addEventListener('touchmove', (e) => {
-  if (!bannerActive && isAtTop()) {
-    e.preventDefault();
-    const touchY = e.touches[0].clientY;
-    const delta = touchStartY - touchY;
-    bannerScroll += delta;
-    touchStartY = touchY;
-
-    if (bannerScroll >= SCROLL_THRESHOLD) {
-      banner.classList.add('active');
-      banner.classList.remove('pre-active');
-      bannerActive = true;
-    } else if (bannerScroll > 0) {
-      banner.classList.add('pre-active');
-    } else {
-      bannerScroll = 0;
-      banner.classList.remove('pre-active');
-    }
-  }
-}, { passive: false });
-
-// Optional: scroll back up to deactivate
-window.addEventListener('scroll', () => {
-  if (bannerActive && window.scrollY < 1) {
-    banner.classList.remove('active');
-    bannerActive = false;
-    bannerScroll = 0;
-    banner.classList.remove('pre-active');
-    window.scrollTo(0, 0);
-  }
-});
-</script> -->
 
  <script>
 
