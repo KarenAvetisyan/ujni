@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width">
 <title>Inertia Scroll with Overlay</title>
 <style>
+
+/* НЕ НУЖНО В ПРОД */
 @font-face { 
     font-family: 'Trial2';
     src: url(fonts/TRIAL_FactorA-Regular.otf) format('truetype');
@@ -25,6 +27,19 @@
     padding: 0;
     font-family: 'Trial2', sans-serif!important;
   }
+  .extra{
+    height: 100vh;
+    width: 100%;
+    background-color: blue;
+    border-top: solid 1px red;
+    border-bottom: solid 1px red;
+    color: #fff;
+    font-size: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  /* КОНЕЦ НЕ НУЖНО В ПРОД */
   
   #_ujni_banners{
     overflow: hidden;
@@ -34,7 +49,6 @@
     width: 100%;
     will-change: transform;
   }
-
   ._ujni-banner{
     position: relative;
     width: 100%;
@@ -42,7 +56,6 @@
     height: 100vh;
     height: 100dvh;
   }
-
   #_ujni_hero {
     z-index: 2;
     background-position: 50% 100%;
@@ -55,7 +68,6 @@
     padding-top: 90px;
     padding-bottom: 90px;
   }
-
   ._ujni-hero__bg {
     position: absolute;
     left: 0;
@@ -69,7 +81,6 @@
     animation: heroScale 1s ease-in-out forwards; 
     will-change: transform;
   }
-
   @keyframes heroScale {
     0% {
       transform: scale(1.1);
@@ -78,12 +89,10 @@
       transform: scale(1);
     }
   }
-
   #_ujni_second {
     z-index: 1;
     will-change: transform;
   }
-
   ._ujni-overlay{
     position: absolute;
     pointer-events: none;
@@ -94,17 +103,14 @@
     background: linear-gradient(to bottom, #000000, #000000, transparent);
     transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  
   ._ujni-banner.in-viewport ._ujni-overlay{
     opacity: 0;
   }
-
   ._ujni-banner .wrapper{
       height: 100%;
       display: flex;
       align-items: center;
   }
-
   ._ujni-hero__content{
     color: #fff;
     height: 100%;
@@ -113,17 +119,14 @@
     gap: 65px;
     flex-direction: column;
   }
-
   ._ujni-hero__content-top img{
     width: 460px;
   }
-
   ._ujni-hero__subtitle{
     font-size: 51px;
     line-height: 72%;
     font-weight: 700;
   }
-
   ._ujni-banner_btn{
     float: none!important;
     text-align: center;
@@ -138,25 +141,21 @@
     bottom: 20px;
 
   }
-
   ._ujni-banner.pre-active ._ujni-hero__bg,
   ._ujni-banner.active ._ujni-hero__bg{
     bottom: -70%;
     height: 170%;
   }
-
-  ._content-bottom{
-    margin-top: auto;
-    width: 100%;
-  }
-
   ._ujni-banner.pre-active ._content-hidden__wrap,
   ._ujni-banner.active ._content-hidden__wrap{
     transform: translateY(0);
     margin-bottom: 0;
     opacity: 1;
   }  
-
+  ._content-bottom{
+    margin-top: auto;
+    width: 100%;
+  }
   ._content-hidden__wrap{
     transform: translateY(50px);
     justify-content: space-between;
@@ -357,7 +356,6 @@
     }
   }
 
-
   ._ujni-addresses__bg{
     position: absolute;
     top: 0;
@@ -434,27 +432,11 @@
     margin-left: -200px;
     transition-delay: 0.4s;
   }
-
-  /* delete  */
-  .extra{
-    height: 100vh;
-    width: 100%;
-    background-color: blue;
-    border-top: solid 1px red;
-    border-bottom: solid 1px red;
-    color: #fff;
-    font-size: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
   @media (min-width: 501px) {
     ._ujni-addresses__bg{
       width: 1920px;
     }
   }
-
   @media (max-width: 1200px) {
     ._ujni-address._address-3 {
         margin-top: 0px;
