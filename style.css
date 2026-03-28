@@ -491,6 +491,9 @@
     ._ujni-hero__subtitle{
       font-size: 47px;
     }
+    ._content-hidden__wrap{
+      gap: 20px;
+    }
   }
 
     
