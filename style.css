@@ -265,11 +265,14 @@
     ._ujni-banner_btn{
       display: none!important;
     }
-    ._ujni-hero__content{
-      height: 85%;
-    }
+    
     ._ujni-hero__subtitle {
         font-size: 50px;
+    }
+  }
+  @media (min-width: 1600px) {
+    ._ujni-hero__content{
+      height: 85%;
     }
   }
   @media (min-width: 1401px) {
