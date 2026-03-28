@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>Inertia Scroll with Overlay</title>
+<link href="https://dev2.zastroyspb.ru/catalog/view/theme/default/stylesheet/stylesheet.css?20022026" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="header.css">
+</head>
+<body>
+
+  <!-- <header class="_header">
+      <nav class="_header-nav">
+        <div class="_header-logo"><img src="logo.svg" alt="logo"></div>
+        <div class="_header-collapse">
+          <ul class="_header-menu">
+              <li><a href="#"><span>О городе</span></a></li>
+              <li class="_has-sub"><a href="#"><span>Квартиры</span><i class="icon icon-caret"></i></a>
+                <ul>
+                  <li><a href="#">Студии</a></li>
+                  <li><a href="#">1-комнатные</a></li>
+                  <li><a href="#">2-комнатные</a></li>
+                  <li><a href="#">3-комнатные</a></li>
+                  <li><a href="#">4-комнатные</a></li>
+                  <li><a href="#">Коммерческие помещения</a></li>
+                  <li><a href="#">Кладовые</a></li>
+                  <li><a href="#"><i class="icon-visual"></i>Визуальный подбор</a></li>
+                </ul>
+              </li>
+              <li><a href="#"><span>Новости</span></a></li>
+              <li><a href="#"><span>Акции</span></a></li>
+              <li><a href="#"><span>Контакты</span></a></li>
+              <li class="_compare"><a href="#"><span>Избранное</span></a></li>
+          </ul>
+        </div>
+      </nav>
+  </header> -->
+
+  <div id="_ujni_banners">
+      <section id="_ujni_hero" class="_ujni-banner">
+        <img class="_ujni-hero__bg" fetchpriority="high" src="https://dev2.zastroyspb.ru/image/main.jpg" alt="bg">  
+        <div class="wrapper">
+            <div class="_ujni-hero__content">
+                <div class="_ujni-hero__content-top">
+                  <img fetchpriority="high" src="https://dev2.zastroyspb.ru/image/logo3.svg" alt="bg">
+                  <p class="_ujni-hero__subtitle">Место, в котором<br> хочется жить</p>
+                </div>
+                <div class="_content-bottom">
+                  <div class="_content-hidden__wrap">
+                      <div class="_col-left">
+                          <p class="_content-hidden__title">Город-спутник комфорт класса</p>
+                          <div class="_content-hidden__stats">
+                            <p>
+                                2000
+                                <span>гектар площади</span>
+                            </p>
+                            <p>
+                                135
+                                <span>тысяч жителей</span>
+                            </p>
+                            <p>
+                                35
+                                <span>минут до центра</span>
+                            </p>
+                          </div>
+                          <p class="_content-hidden__txt">Современный город-спутник Южный сочетает инновационную экосистему ИТМО Хайпарка с уютной средой для жизни. Просторные кварталы, зеленые бульвары и передовая инфраструктура создают идеальное место для работы и отдыха</p>
+                      </div>
+                      <div class="_col-right">
+                        <div class="_content-hidden__video">
+                            <a href="#" class="video" onclick="togglepopup('video',true);return false;"></a>
+                            <a class="video-play" href="#" onclick="togglepopup('video',true);return false;">Репортаж о городе</a>
+                        </div>
+                      </div>
+                  </div>
+                  <a class="btn _ujni-banner_btn" href="/apartments">ВЫБРАТЬ КВАРТИРУ</a>
+                </div>
+            </div>
+            <a href="#" class="js-scroll-banner _ujni-arrow"></a>
+        </div>
+      </section>
+
+      <div id="_ujni_second" class="_ujni-banner" data-inviewport>
+        <div class="_ujni-addresses__bg" style="background-image: url(https://dev2.zastroyspb.ru/image/14.jpg?2);"></div>
+        <div class="_ujni-overlay"></div>
+        <div class="_ujni-addresses">
+            <span class="_ujni-address _address-1">41 110 м² жилья</span>
+            <span class="_ujni-address _address-2">Детский сад на 160 мест</span>
+            <span class="_ujni-address _address-3">Парковочные зоны</span>
+            <span class="_ujni-address _address-4">Торговая аллея</span>
+        </div>
+      </div>
+  </div>
+
+ <section class="extra"><h5>1</h5></section>
+ <section class="extra"><h5>2</h5></section>
+ <section class="extra"><h5>3</h5></section>
+ <section class="extra"><h5>4</h5></section>
+ <section class="extra"><h5>5</h5></section>
+
+
+ <script src="script.js"></script>
+ <!-- <script>
+    const header = document.querySelector('._header');
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 10) {
+        header.classList.add('_fixed');
+      } else {
+        header.classList.remove('_fixed');
+      }
+    });
+ </script> -->
+</body>
+</html>
+
+
