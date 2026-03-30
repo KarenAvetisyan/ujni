@@ -4,8 +4,43 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
 <title>Inertia Scroll with Overlay</title>
-<link href="https://dev2.zastroyspb.ru/catalog/view/theme/default/stylesheet/stylesheet.css?20022026" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link href="https://dev2.zastroyspb.ru/catalog/view/theme/default/stylesheet/stylesheet.css" rel="stylesheet">
+<!-- <link rel="stylesheet" href="style.css"> -->
+ <style>
+  /* НЕ НУЖНО В ПРОД */
+@font-face { 
+    font-family: 'Trial';
+    src: url(./fonts/TRIAL_FactorA-Regular.otf) format('truetype');
+    font-weight: 400;
+}
+@font-face {
+    font-family: 'Trial';
+    src: url(./fonts/TRIAL_FactorA-Medium.otf) format('truetype');
+    font-weight: 500;
+}
+@font-face {
+    font-family: 'Trial';
+    src: url(./fonts/TRIAL_FactorA-Bold.otf) format('truetype');
+    font-weight: 700;
+}
+  html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Trial', sans-serif;
+  }
+  .extra{
+    height: 100vh;
+    width: 100%;
+    background-color: blue;
+    border-top: solid 1px red;
+    border-bottom: solid 1px red;
+    color: #fff;
+    font-size: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+ </style>
 <link rel="stylesheet" href="header.css">
 </head>
 <body>
@@ -177,7 +212,21 @@
 
       } else {
         // DESKTOP → hover behavior (your original)
+        let leaveTimeout;
+        // li.addEventListener('mouseenter', () => {
+        //   const totalHeight = submenu.offsetHeight + nav.offsetHeight;
+        //   nav.style.setProperty('--nav-height', totalHeight + 'px');
+        //   nav.classList.add('_open');
+        //   li.classList.add('_open');
+        // });
+
+        // li.addEventListener('mouseleave', () => {
+        //   nav.classList.remove('_open');
+        //   li.classList.remove('_open');
+        // });
         li.addEventListener('mouseenter', () => {
+          clearTimeout(leaveTimeout); // ✅ cancel pending close
+
           const totalHeight = submenu.offsetHeight + nav.offsetHeight;
           nav.style.setProperty('--nav-height', totalHeight + 'px');
           nav.classList.add('_open');
@@ -185,8 +234,10 @@
         });
 
         li.addEventListener('mouseleave', () => {
-          nav.classList.remove('_open');
-          li.classList.remove('_open');
+          leaveTimeout = setTimeout(() => {
+            nav.classList.remove('_open');
+            li.classList.remove('_open');
+          }, 300);
         });
       }
     });

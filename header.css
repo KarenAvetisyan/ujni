@@ -308,6 +308,11 @@
     pointer-events: all;
     transition: 1s;
   }
+  ._header-menu > li > ul:hover{
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+  }
 }
 @media (max-width: 1400px) {
     ._header .icon-caret {
