@@ -269,7 +269,7 @@
     background-color: #000;
     display: flex;
     transition: .6s;
-
+    pointer-events: none;
 }
 ._header-contact{
     display: none;
